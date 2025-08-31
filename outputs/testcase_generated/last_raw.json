@@ -1,0 +1,58 @@
+ [
+  {
+    "id": "TC-001",
+    "title": "Valid Login with Correct Credentials",
+    "steps": ["Enter valid email", "Enter valid password", "Click on 'Login' button"],
+    "expected": "'Successful login. Redirected to dashboard.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-002",
+    "title": "Invalid Login with Incorrect Password (1st attempt)",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
+    "expected": "'Incorrect password. Please try again.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-003",
+    "title": "Invalid Login with Incorrect Password (2nd attempt)",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
+    "expected": "'Incorrect password. Please try again.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-004",
+    "title": "Invalid Login with Incorrect Password (3rd attempt)",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
+    "expected": "'Account locked for 10 minutes due to multiple failed login attempts.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-005",
+    "title": "Invalid Login with Incorrect Email",
+    "steps": ["Enter incorrect email", "Enter valid password", "Click on 'Login' button"],
+    "expected": "'Incorrect email or password. Please check and try again.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-006",
+    "title": "Password Reset via 'Forgot Password' link",
+    "steps": ["Click on 'Forgot Password' link", "Enter registered email", "Follow password reset instructions"],
+    "expected": "'A password reset email has been sent to your registered email.'",
+    "priority": "High"
+  },
+  {
+    "id": "TC-007",
+    "title": "Successful Redirect to Dashboard after Login",
+    "steps": ["Enter valid email", "Enter valid password", "Click on 'Login' button"],
+    "expected": "'Successfully logged in. Redirected to dashboard.'",
+    "priority": "Medium"
+  },
+  {
+    "id": "TC-008",
+    "title": "Error Message for Invalid Credentials",
+    "steps": ["Enter invalid email", "Enter invalid password", "Click on 'Login' button"],
+    "expected": "'Incorrect email or password. Please check and try again.'",
+    "priority": "Low"
+  }
+]

@@ -1,0 +1,9 @@
+TestID,Title,Steps,Expected,Priority
+TC-001,Valid Login with Correct Credentials,Enter valid email | Enter valid password | Click on 'Login' button,'Successful login. Redirected to dashboard.',High
+TC-002,Invalid Login with Incorrect Password (1st attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Incorrect password. Please try again.',High
+TC-003,Invalid Login with Incorrect Password (2nd attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Incorrect password. Please try again.',High
+TC-004,Invalid Login with Incorrect Password (3rd attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Account locked for 10 minutes due to multiple failed login attempts.',High
+TC-005,Invalid Login with Incorrect Email,Enter incorrect email | Enter valid password | Click on 'Login' button,'Incorrect email or password. Please check and try again.',High
+TC-006,Password Reset via 'Forgot Password' link,Click on 'Forgot Password' link | Enter registered email | Follow password reset instructions,'A password reset email has been sent to your registered email.',High
+TC-007,Successful Redirect to Dashboard after Login,Enter valid email | Enter valid password | Click on 'Login' button,'Successfully logged in. Redirected to dashboard.',Medium
+TC-008,Error Message for Invalid Credentials,Enter invalid email | Enter invalid password | Click on 'Login' button,'Incorrect email or password. Please check and try again.',Low
