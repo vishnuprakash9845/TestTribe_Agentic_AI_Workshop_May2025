@@ -13,6 +13,7 @@ from pathlib import Path
 import json
 from typing import List, Dict
 import argparse
+import time
 
 from src.core import chat, pick_requirement, parse_json_safely, to_rows, write_csv
 
@@ -23,7 +24,8 @@ from src.core import chat, pick_requirement, parse_json_safely, to_rows, write_c
 
 # Paths (easy-to-change constants for students)
 ROOT = Path(__file__).resolve().parents[2]
-REQ_DIR = ROOT / "data" / "requirements"  # directory with .txt requirement files
+# directory with .txt requirement files
+REQ_DIR = ROOT / "data" / "requirements"
 OUT_DIR = ROOT / "outputs" / "testcase_generated"  # where outputs are written
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 OUT_CSV = OUT_DIR / "test_cases.csv"  # CSV output path
@@ -87,8 +89,10 @@ def main() -> None:
 
     # Accept either a positional arg or --input / -i flag for the requirement path.
     parser = argparse.ArgumentParser()
-    parser.add_argument("input", nargs="?", help="path to requirement .txt file")
-    parser.add_argument("-i", "--input", dest="input_flag", help="path to requirement .txt file")
+    parser.add_argument("input", nargs="?",
+                        help="path to requirement .txt file")
+    parser.add_argument("-i", "--input", dest="input_flag",
+                        help="path to requirement .txt file")
     args = parser.parse_args()
 
     chosen = args.input_flag or args.input
@@ -133,4 +137,19 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     main()
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time:.4f} seconds")
+
+
+# To run the agent:
+# 1. Install the required packages:
+#   ```
+#   pip install -r requirements.txt
+#   ```
+# 2. Run the script:
+#  ```
+#   python -m src.agents.testcase_agent --input path/to/requirement.txt
+#   ```
+# python -m src.agents.testcase_agent --input data/requirements/login.txt

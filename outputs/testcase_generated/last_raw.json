@@ -1,58 +1,58 @@
  [
   {
     "id": "TC-001",
-    "title": "Valid Login with Correct Credentials",
-    "steps": ["Enter valid email", "Enter valid password", "Click on 'Login' button"],
-    "expected": "'Successful login. Redirected to dashboard.'",
+    "title": "Valid credentials - successful login",
+    "steps": ["Enter valid email and password", "Click on 'Login' button"],
+    "expected": "User is redirected to their dashboard",
     "priority": "High"
   },
   {
     "id": "TC-002",
-    "title": "Invalid Login with Incorrect Password (1st attempt)",
-    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
-    "expected": "'Incorrect password. Please try again.'",
+    "title": "Incorrect credentials - unsuccessful login",
+    "steps": ["Enter invalid email and password", "Click on 'Login' button"],
+    "expected": "Error message displayed for invalid credentials",
     "priority": "High"
   },
   {
     "id": "TC-003",
-    "title": "Invalid Login with Incorrect Password (2nd attempt)",
-    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
-    "expected": "'Incorrect password. Please try again.'",
+    "title": "Three incorrect login attempts - account locking",
+    "steps": ["Enter incorrect password thrice", "Click on 'Login' button"],
+    "expected": "Account is locked for 10 minutes",
     "priority": "High"
   },
   {
     "id": "TC-004",
-    "title": "Invalid Login with Incorrect Password (3rd attempt)",
-    "steps": ["Enter valid email", "Enter incorrect password", "Click on 'Login' button"],
-    "expected": "'Account locked for 10 minutes due to multiple failed login attempts.'",
+    "title": "Forgot Password link functionality",
+    "steps": ["Click on 'Forgot Password' link", "Follow password reset instructions"],
+    "expected": "User can successfully reset their password",
     "priority": "High"
   },
   {
     "id": "TC-005",
-    "title": "Invalid Login with Incorrect Email",
-    "steps": ["Enter incorrect email", "Enter valid password", "Click on 'Login' button"],
-    "expected": "'Incorrect email or password. Please check and try again.'",
-    "priority": "High"
-  },
-  {
-    "id": "TC-006",
-    "title": "Password Reset via 'Forgot Password' link",
-    "steps": ["Click on 'Forgot Password' link", "Enter registered email", "Follow password reset instructions"],
-    "expected": "'A password reset email has been sent to your registered email.'",
-    "priority": "High"
-  },
-  {
-    "id": "TC-007",
-    "title": "Successful Redirect to Dashboard after Login",
-    "steps": ["Enter valid email", "Enter valid password", "Click on 'Login' button"],
-    "expected": "'Successfully logged in. Redirected to dashboard.'",
+    "title": "Redirect to login page after password reset",
+    "steps": ["Reset password", "Click on 'Login' button"],
+    "expected": "User is redirected to the login page",
     "priority": "Medium"
   },
   {
+    "id": "TC-006",
+    "title": "Incorrect email format validation",
+    "steps": ["Enter an invalid email format", "Click on 'Login' button"],
+    "expected": "Error message displayed for incorrect email format",
+    "priority": "Medium"
+  },
+  {
+    "id": "TC-007",
+    "title": "Empty email or password validation",
+    "steps": ["Leave the email field empty", "Click on 'Login' button"],
+    "expected": "Error message displayed for empty fields",
+    "priority": "Low"
+  },
+  {
     "id": "TC-008",
-    "title": "Error Message for Invalid Credentials",
-    "steps": ["Enter invalid email", "Enter invalid password", "Click on 'Login' button"],
-    "expected": "'Incorrect email or password. Please check and try again.'",
+    "title": "Password length validation",
+    "steps": ["Enter a password with less than 6 characters", "Click on 'Login' button"],
+    "expected": "Error message displayed for password length",
     "priority": "Low"
   }
 ]

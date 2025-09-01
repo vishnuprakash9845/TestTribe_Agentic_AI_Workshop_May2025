@@ -1,9 +1,9 @@
 TestID,Title,Steps,Expected,Priority
-TC-001,Valid Login with Correct Credentials,Enter valid email | Enter valid password | Click on 'Login' button,'Successful login. Redirected to dashboard.',High
-TC-002,Invalid Login with Incorrect Password (1st attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Incorrect password. Please try again.',High
-TC-003,Invalid Login with Incorrect Password (2nd attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Incorrect password. Please try again.',High
-TC-004,Invalid Login with Incorrect Password (3rd attempt),Enter valid email | Enter incorrect password | Click on 'Login' button,'Account locked for 10 minutes due to multiple failed login attempts.',High
-TC-005,Invalid Login with Incorrect Email,Enter incorrect email | Enter valid password | Click on 'Login' button,'Incorrect email or password. Please check and try again.',High
-TC-006,Password Reset via 'Forgot Password' link,Click on 'Forgot Password' link | Enter registered email | Follow password reset instructions,'A password reset email has been sent to your registered email.',High
-TC-007,Successful Redirect to Dashboard after Login,Enter valid email | Enter valid password | Click on 'Login' button,'Successfully logged in. Redirected to dashboard.',Medium
-TC-008,Error Message for Invalid Credentials,Enter invalid email | Enter invalid password | Click on 'Login' button,'Incorrect email or password. Please check and try again.',Low
+TC-001,Valid credentials - successful login,Enter valid email and password | Click on 'Login' button,User is redirected to their dashboard,High
+TC-002,Incorrect credentials - unsuccessful login,Enter invalid email and password | Click on 'Login' button,Error message displayed for invalid credentials,High
+TC-003,Three incorrect login attempts - account locking,Enter incorrect password thrice | Click on 'Login' button,Account is locked for 10 minutes,High
+TC-004,Forgot Password link functionality,Click on 'Forgot Password' link | Follow password reset instructions,User can successfully reset their password,High
+TC-005,Redirect to login page after password reset,Reset password | Click on 'Login' button,User is redirected to the login page,Medium
+TC-006,Incorrect email format validation,Enter an invalid email format | Click on 'Login' button,Error message displayed for incorrect email format,Medium
+TC-007,Empty email or password validation,Leave the email field empty | Click on 'Login' button,Error message displayed for empty fields,Low
+TC-008,Password length validation,Enter a password with less than 6 characters | Click on 'Login' button,Error message displayed for password length,Low
