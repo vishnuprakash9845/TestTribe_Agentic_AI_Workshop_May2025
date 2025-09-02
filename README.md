@@ -17,4 +17,12 @@ python -m src.agents.testcase_agent --input data/requirements/login.txt
 ```
 
 ## Output
-![Project Screenshot](./images/day1.png)
+![Project Screenshot](./images/day1.1.png)
+
+## CMD-compatible curl command to test Ollama
+
+```
+curl http://localhost:11434/api/generate -d "{ \"model\": \"mistral:latest\", \"prompt\": \"Explain what is regression testing in simple terms.\", \"raw\": true, \"stream\": false }"
+```
+
+![Project Screenshot](./images/day1.2.png)
