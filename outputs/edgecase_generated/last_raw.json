@@ -1,0 +1,110 @@
+ [
+  {
+    "id": "TC-001",
+    "title": "Valid credentials - successful login",
+    "steps": ["Enter valid email", "Enter valid password", "Click on 'Login' button", "User is redirected to the dashboard"],
+    "expected": "User is successfully logged in and redirected to their dashboard",
+    "priority": "High",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-002",
+    "title": "Invalid credentials - login failure",
+    "steps": ["Enter invalid email", "Enter valid password", "Click on 'Login' button", "Error message is displayed"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-003",
+    "title": "Invalid email - login failure",
+    "steps": ["Enter valid password", "Enter invalid email", "Click on 'Login' button", "Error message is displayed"],
+    "expected": "An error message is displayed for invalid email",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-004",
+    "title": "Invalid password - login failure (1st attempt)",
+    "steps": ["Enter valid email", "Enter invalid password", "Click on 'Login' button", "Error message is displayed"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-005",
+    "title": "Invalid password - login failure (2nd attempt)",
+    "steps": ["Enter valid email", "Enter invalid password", "Click on 'Login' button", "Error message is displayed"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-006",
+    "title": "Invalid password - account lock (3rd attempt)",
+    "steps": ["Enter valid email", "Enter invalid password", "Click on 'Login' button", "Account is locked for 10 minutes"],
+    "expected": "Account is locked for 10 minutes after 3 incorrect login attempts",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Low"
+  },
+  {
+    "id": "TC-007",
+    "title": "Reset password - email sent",
+    "steps": ["Click on 'Forgot Password' link", "Enter email", "Click on 'Submit' button", "Email with reset link is received"],
+    "expected": "An email with a reset password link is received",
+    "priority": "Medium",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-008",
+    "title": "Invalid email - reset password failure",
+    "steps": ["Click on 'Forgot Password' link", "Enter invalid email", "Click on 'Submit' button", "Error message is displayed"],
+    "expected": "An error message is displayed for invalid email",
+    "priority": "Medium",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-009",
+    "title": "Valid email - reset password link invalid",
+    "steps": ["Click on received reset link", "Enter new password", "Click on 'Submit' button", "Error message is displayed"],
+    "expected": "An error message is displayed for an invalid or expired reset link",
+    "priority": "Medium",
+    "tags": ["edge"],
+    "likelihood": "Low"
+  },
+  {
+    "id": "TC-010",
+    "title": "Valid email - successful password reset",
+    "steps": ["Click on received reset link", "Enter new password", "Confirm new password", "Click on 'Submit' button", "Password is successfully reset"],
+    "expected": "The password is successfully reset",
+    "priority": "Medium",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-011",
+    "title": "Account unlock - wait for 10 minutes",
+    "steps": [],
+    "expected": "The account is automatically unlocked after 10 minutes",
+    "priority": "Low",
+    "tags": ["edge"],
+    "likelihood": "Low"
+  },
+  {
+    "id": "TC-012",
+    "title": "Login after account unlock",
+    "steps": ["Enter valid email", "Enter new password", "Click on 'Login' button", "User is successfully logged in and redirected to their dashboard"],
+    "expected": "User is successfully logged in and redirected to their dashboard",
+    "priority": "Low",
+    "tags": ["happy"],
+    "likelihood": "High"
+  }
+]

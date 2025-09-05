@@ -1,0 +1,13 @@
+TestID,Title,Steps,Expected,Priority,Tags,Likelihood
+TC-001,Valid credentials - successful login,Enter valid email | Enter valid password | Click on 'Login' button | User is redirected to the dashboard,User is successfully logged in and redirected to their dashboard,High,['happy'],High
+TC-002,Invalid credentials - login failure,Enter invalid email | Enter valid password | Click on 'Login' button | Error message is displayed,An error message is displayed for invalid credentials,High,['edge'],Medium
+TC-003,Invalid email - login failure,Enter valid password | Enter invalid email | Click on 'Login' button | Error message is displayed,An error message is displayed for invalid email,High,['edge'],Medium
+TC-004,Invalid password - login failure (1st attempt),Enter valid email | Enter invalid password | Click on 'Login' button | Error message is displayed,An error message is displayed for invalid credentials,High,['edge'],Medium
+TC-005,Invalid password - login failure (2nd attempt),Enter valid email | Enter invalid password | Click on 'Login' button | Error message is displayed,An error message is displayed for invalid credentials,High,['edge'],Medium
+TC-006,Invalid password - account lock (3rd attempt),Enter valid email | Enter invalid password | Click on 'Login' button | Account is locked for 10 minutes,Account is locked for 10 minutes after 3 incorrect login attempts,High,['edge'],Low
+TC-007,Reset password - email sent,Click on 'Forgot Password' link | Enter email | Click on 'Submit' button | Email with reset link is received,An email with a reset password link is received,Medium,['happy'],High
+TC-008,Invalid email - reset password failure,Click on 'Forgot Password' link | Enter invalid email | Click on 'Submit' button | Error message is displayed,An error message is displayed for invalid email,Medium,['edge'],Medium
+TC-009,Valid email - reset password link invalid,Click on received reset link | Enter new password | Click on 'Submit' button | Error message is displayed,An error message is displayed for an invalid or expired reset link,Medium,['edge'],Low
+TC-010,Valid email - successful password reset,Click on received reset link | Enter new password | Confirm new password | Click on 'Submit' button | Password is successfully reset,The password is successfully reset,Medium,['happy'],High
+TC-011,Account unlock - wait for 10 minutes,,The account is automatically unlocked after 10 minutes,Low,['edge'],Low
+TC-012,Login after account unlock,Enter valid email | Enter new password | Click on 'Login' button | User is successfully logged in and redirected to their dashboard,User is successfully logged in and redirected to their dashboard,Low,['happy'],High

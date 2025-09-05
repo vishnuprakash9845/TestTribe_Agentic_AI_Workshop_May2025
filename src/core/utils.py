@@ -123,10 +123,17 @@ def to_rows(cases: List[Dict]) -> List[List[str]]:
         steps_list = c.get("steps") or []
         if not isinstance(steps_list, list):
             steps_list = [str(steps_list)]
-        steps = " | ".join(str(s).strip() for s in steps_list if str(s).strip())
+        steps = " | ".join(str(s).strip()
+                           for s in steps_list if str(s).strip())
         expected = str(c.get("expected") or "").strip()
         priority = str(c.get("priority") or "Medium").strip()
-        rows.append([tid, title, steps, expected, priority])
+        # Assignment: Day-1
+        tags = str(c.get("tags") or "edge" or "negative" or "happy").strip()
+        # Assignment: Day-1
+        likelihood = str(c.get("likelihood")
+                         or "High" or "Medium" or "Low").strip()
+        rows.append([tid, title, steps, expected, priority,
+                    tags, likelihood])  # Assignment: Day-1
     return rows
 
 
@@ -146,7 +153,8 @@ def write_csv(rows: List[List[str]], path: Path) -> None:
         None
     """
     path.parent.mkdir(parents=True, exist_ok=True)
-    header = ["TestID", "Title", "Steps", "Expected", "Priority"]
+    header = ["TestID", "Title", "Steps", "Expected",
+              "Priority", "Tags", "Likelihood"]  # Assignment: Day-1
     lines = [",".join(header)]
     for r in rows:
         escaped = [field.replace(",", ";") for field in r]
@@ -160,4 +168,5 @@ def write_json(obj: object, path: Path) -> None:
     Useful shared helper for agents that need to emit JSON outputs.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    path.write_text(json.dumps(
+        obj, indent=2, ensure_ascii=False), encoding="utf-8")
