@@ -52,12 +52,12 @@ python -m src.agents.log_analyzer --inputs data/log/app_startup_short.log
 ```
 ![Project Screenshot](./images/day2.1.png)
 
+
+
 ### 💡 Notes
 - 
 
 </details>
-
----
 
 ---
 
@@ -65,10 +65,11 @@ python -m src.agents.log_analyzer --inputs data/log/app_startup_short.log
 <summary>📅 Day 3</summary>
 
 ### ✅ Key Learnings
-- 
+- Log Analyzer AI Agent with Logging
 
 ### 🚀 Hands-on
 - 
+![Project Screenshot](./images/day2.2.png)
 
 ### 💡 Notes
 - 
@@ -76,3 +77,18 @@ python -m src.agents.log_analyzer --inputs data/log/app_startup_short.log
 </details>
 
 ---
+
+<details>
+<summary>📅 Day 4</summary>
+
+### ✅ Key Learnings
+- 
+
+### 🚀 Hands-on
+- 
+
+
+### 💡 Notes
+- 
+
+</details>
