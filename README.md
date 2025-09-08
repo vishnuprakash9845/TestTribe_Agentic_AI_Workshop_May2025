@@ -43,17 +43,21 @@ curl http://localhost:11434/api/generate -d "{ \"model\": \"mistral:latest\", \"
 <summary>📅 Day 2</summary>
 
 ### ✅ Key Learnings
-- 
+- Log Analyzer AI Agent
+
 
 ### 🚀 Hands-on
-- 
+```
+python -m src.agents.log_analyzer --inputs data/log/app_startup_short.log
+```
+![Project Screenshot](./images/day2.1.png)
+
+
 
 ### 💡 Notes
 - 
 
 </details>
-
----
 
 ---
 
@@ -61,10 +65,11 @@ curl http://localhost:11434/api/generate -d "{ \"model\": \"mistral:latest\", \"
 <summary>📅 Day 3</summary>
 
 ### ✅ Key Learnings
-- 
+- Log Analyzer AI Agent with Logging
 
 ### 🚀 Hands-on
 - 
+![Project Screenshot](./images/day2.2.png)
 
 ### 💡 Notes
 - 
@@ -72,3 +77,18 @@ curl http://localhost:11434/api/generate -d "{ \"model\": \"mistral:latest\", \"
 </details>
 
 ---
+
+<details>
+<summary>📅 Day 4</summary>
+
+### ✅ Key Learnings
+- 
+
+### 🚀 Hands-on
+- 
+
+
+### 💡 Notes
+- 
+
+</details>

@@ -1,0 +1,54 @@
+{
+  "groups": [
+    {
+      "signature": "starting application qa agent",
+      "count": 1,
+      "levels": {
+        "INFO": 1,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "examples": [
+        "2025-08-20 08:00:01 [INFO]  Starting application: qa-agent-service v1.2.0"
+      ],
+      "probable_root_cause": "",
+      "recommendation": ""
+    },
+    {
+      "signature": "database connection pool initialized",
+      "count": 1,
+      "levels": {
+        "INFO": 1,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "examples": [
+        "2025-08-20 08:00:03 [INFO]  Database connection pool initialized (size=10)"
+      ],
+      "probable_root_cause": "",
+      "recommendation": ""
+    },
+    {
+      "signature": "failed to warm cache",
+      "count": 1,
+      "levels": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 1
+      },
+      "examples": [
+        "2025-08-20 08:00:05 [ERROR] Failed to warm cache: redis://localhost:6379 - ConnectionRefusedError"
+      ],
+      "probable_root_cause": "Connection issue with Redis",
+      "recommendation": "Check if the Redis server is running and listen on the provided address."
+    }
+  ],
+  "summary": {
+    "total_events": 10,
+    "error_rate": 0.1,
+    "top_signatures": [
+      "failed to warm cache"
+    ],
+    "short_summary": "Most events are informational, but there's a potential issue with Redis."
+  }
+}

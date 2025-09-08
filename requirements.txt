@@ -1,2 +1,6 @@
 httpx
 dotenv
+langchain
+langchain-openai
+langchain-ollama
+python-dotenv
