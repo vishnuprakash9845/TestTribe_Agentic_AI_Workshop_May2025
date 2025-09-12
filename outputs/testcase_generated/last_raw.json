@@ -1,58 +1,58 @@
  [
   {
     "id": "TC-001",
-    "title": "Valid credentials - successful login",
-    "steps": ["Enter valid email and password", "Click on 'Login' button"],
-    "expected": "User is redirected to their dashboard",
+    "title": "Valid Email Sign Up",
+    "steps": ["Enter valid email address", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Enter OTP for verification", "Submit sign up form"],
+    "expected": "User should be successfully registered and redirected to the welcome page",
     "priority": "High"
   },
   {
     "id": "TC-002",
-    "title": "Incorrect credentials - unsuccessful login",
-    "steps": ["Enter invalid email and password", "Click on 'Login' button"],
-    "expected": "Error message displayed for invalid credentials",
+    "title": "Invalid Email Sign Up",
+    "steps": ["Enter an invalid email address", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Submit sign up form"],
+    "expected": "An error message should be displayed and the user should not be registered",
     "priority": "High"
   },
   {
     "id": "TC-003",
-    "title": "Three incorrect login attempts - account locking",
-    "steps": ["Enter incorrect password thrice", "Click on 'Login' button"],
-    "expected": "Account is locked for 10 minutes",
+    "title": "Existing Email Sign Up",
+    "steps": ["Enter an email address already in use", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Submit sign up form"],
+    "expected": "An error message should be displayed and the user should not be registered",
     "priority": "High"
   },
   {
     "id": "TC-004",
-    "title": "Forgot Password link functionality",
-    "steps": ["Click on 'Forgot Password' link", "Follow password reset instructions"],
-    "expected": "User can successfully reset their password",
+    "title": "Password Criteria Violation",
+    "steps": ["Enter a password with less than 8 characters", "Enter a password without an uppercase letter", "Enter a password without a number", "Enter a password without a special character"],
+    "expected": "An error message should be displayed and the user should not be able to proceed",
     "priority": "High"
   },
   {
     "id": "TC-005",
-    "title": "Redirect to login page after password reset",
-    "steps": ["Reset password", "Click on 'Login' button"],
-    "expected": "User is redirected to the login page",
+    "title": "OTP Verification Failure",
+    "steps": ["Enter incorrect OTP", "Submit OTP for verification"],
+    "expected": "An error message should be displayed and the user should not be registered",
     "priority": "Medium"
   },
   {
     "id": "TC-006",
-    "title": "Incorrect email format validation",
-    "steps": ["Enter an invalid email format", "Click on 'Login' button"],
-    "expected": "Error message displayed for incorrect email format",
+    "title": "Successful Redirection After Sign Up",
+    "steps": ["Sign up successfully", ""],
+    "expected": "User should be redirected to the welcome page",
     "priority": "Medium"
   },
   {
     "id": "TC-007",
-    "title": "Empty email or password validation",
-    "steps": ["Leave the email field empty", "Click on 'Login' button"],
-    "expected": "Error message displayed for empty fields",
+    "title": "Mobile Number Validation",
+    "steps": ["Enter an invalid mobile number", "Request OTP"],
+    "expected": "An error message should be displayed and the user should not receive the OTP",
     "priority": "Low"
   },
   {
     "id": "TC-008",
-    "title": "Password length validation",
-    "steps": ["Enter a password with less than 6 characters", "Click on 'Login' button"],
-    "expected": "Error message displayed for password length",
+    "title": "Sign Up with Only Email",
+    "steps": ["Enter email address", "Submit sign up form without entering mobile number or password"],
+    "expected": "An error message should be displayed and the user should not be able to proceed",
     "priority": "Low"
   }
 ]

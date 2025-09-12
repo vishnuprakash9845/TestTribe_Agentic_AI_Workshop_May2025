@@ -5,5 +5,5 @@
   "top_signatures": [
     "failed to warm cache"
   ],
-  "short_summary": "Most events are informational, but there's a potential issue with Redis."
+  "short_summary": "The log contains 10 events with a 10% error rate. The primary issue appears to be a connection problem with the Redis server."
 }
