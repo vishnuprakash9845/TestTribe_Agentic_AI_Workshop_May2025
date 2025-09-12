@@ -1,0 +1,13 @@
+TestID,Title,Steps,Expected,Priority,Tags,Likelihood
+TC-001,Valid email sign up,Enter valid email | Enter password | Enter mobile number | Click sign up,User is redirected to welcome page,High,['happy'],High
+TC-002,Invalid email sign up,Enter invalid email format | Enter password | Enter mobile number | Click sign up,Error message displayed,High,['edge'],High
+TC-003,Password validation check,Enter password (less than 8 chars) | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
+TC-004,Password validation with incorrect format,Enter password (less than 8 chars; no uppercase letter) | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
+TC-005,OTP verification,Enter correct OTP | Click verify,Account verified and redirected to welcome page,High,['happy'],High
+TC-006,Incorrect OTP verification,Enter incorrect OTP | Click verify,Error message displayed,High,['negative'],High
+TC-007,Email already in use,Enter existing email | Enter password | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
+TC-008,Mobile number already registered,Enter valid email | Enter password | Enter existing mobile number | Click sign up,Error message displayed,Medium,['negative'],High
+TC-009,Redirect to welcome page after successful signup,Enter valid email | Enter valid password | Enter mobile number | Click sign up,User is redirected to welcome page,High,['happy'],High
+TC-010,Sign up without mobile number,Enter valid email | Enter password | Leave mobile number field empty | Click sign up,Error message displayed,Medium,['negative'],High
+TC-011,Sign up without password,Enter valid email | Leave password field empty | Enter mobile number | Click sign up,Error message displayed,Medium,['negative'],High
+TC-012,Sign up with empty fields,Leave all fields empty | Click sign up,Error message displayed,Low,['negative'],High

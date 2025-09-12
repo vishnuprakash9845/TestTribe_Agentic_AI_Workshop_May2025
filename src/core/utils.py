@@ -97,70 +97,149 @@ def parse_json_safely(text: str, raw_path: Path) -> List[Dict]:
         return data
 
 
-def to_rows(cases: List[Dict]) -> List[List[str]]:
-    """Convert parsed case dictionaries into CSV-safe rows.
+def to_rows(items: List[Dict], mode: str = "testcase") -> List[List[str]]:
+    """Convert parsed dictionaries into CSV-safe rows.
 
-    Expected keys in each case dict (all optional):
-      - id: unique identifier
-      - title: short title for the test case
-      - steps: list of step strings or a single string
-      - expected: expected result text
-      - priority: priority label (e.g., High/Medium/Low)
-
-    The function normalizes missing values, flattens steps into a single
-    string separated by " | ", and returns rows in the order:
-    [TestID, Title, Steps, Expected, Priority].
+    Modes:
+        - "testcase": expects test case dictionaries.
+        - "requirement": expects requirement dictionaries.
 
     Args:
-        cases: List of dictionaries representing test cases.
+        items: List of dicts (test cases or requirements).
+        mode: Either "testcase" (default) or "requirement".
 
     Returns:
         List[List[str]]: Rows ready for CSV writing.
     """
     rows: List[List[str]] = []
-    for i, c in enumerate(cases, start=1):
-        tid = str(c.get("id") or f"TC-{i:03d}")
-        title = str(c.get("title") or "").strip()
-        steps_list = c.get("steps") or []
-        if not isinstance(steps_list, list):
-            steps_list = [str(steps_list)]
-        steps = " | ".join(str(s).strip()
-                           for s in steps_list if str(s).strip())
-        expected = str(c.get("expected") or "").strip()
-        priority = str(c.get("priority") or "Medium").strip()
-        # Assignment: Day-1
-        tags = str(c.get("tags") or "edge" or "negative" or "happy").strip()
-        # Assignment: Day-1
-        likelihood = str(c.get("likelihood")
-                         or "High" or "Medium" or "Low").strip()
-        rows.append([tid, title, steps, expected, priority,
-                    tags, likelihood])  # Assignment: Day-1
+
+    if mode == "testcase":
+        for i, c in enumerate(items, start=1):
+            tid = str(c.get("id") or f"TC-{i:03d}")
+            title = str(c.get("title") or "").strip()
+            steps_list = c.get("steps") or []
+            if not isinstance(steps_list, list):
+                steps_list = [str(steps_list)]
+            steps = " | ".join(str(s).strip()
+                               for s in steps_list if str(s).strip())
+            expected = str(c.get("expected") or "").strip()
+            priority = str(c.get("priority") or "Medium").strip()
+            tags = str(c.get("tags") or "edge").strip()
+            likelihood = str(c.get("likelihood") or "High").strip()
+            rows.append([tid, title, steps, expected,
+                         priority, tags, likelihood])
+
+    elif mode == "requirement":
+        for i, r in enumerate(items, start=1):
+            rid = str(r.get("id") or f"G-{i:03d}")
+            source_file = str(r.get("source_file") or "").strip()
+            category = str(r.get("category") or "").strip()
+            description = str(r.get("description") or "").strip()
+            severity = str(r.get("severity") or "Medium").strip()
+            suggested = str(r.get("suggested_requirement") or "").strip()
+            rows.append([rid, source_file, category,
+                         description, severity, suggested])
+
+    else:
+        raise ValueError(f"Unsupported mode: {mode}")
+
     return rows
 
 
-def write_csv(rows: List[List[str]], path: Path) -> None:
+def write_csv(rows: List[List[str]], path: Path, mode: str = "testcase") -> None:
     """Write rows to a CSV file at `path`, creating parent directories.
-
-    This simple writer:
-    - Writes a header row `["TestID","Title","Steps","Expected","Priority"]`.
-    - Escapes commas inside fields by replacing them with semicolons to avoid
-      adding CSV quoting logic (keeps the helper dependency-free for teaching).
 
     Args:
         rows: List of rows (each row is list of strings).
         path: Destination file path for the CSV.
+        mode: Either "testcase" or "requirement".
 
     Returns:
         None
     """
     path.parent.mkdir(parents=True, exist_ok=True)
-    header = ["TestID", "Title", "Steps", "Expected",
-              "Priority", "Tags", "Likelihood"]  # Assignment: Day-1
-    lines = [",".join(header)]
+
+    headers = {
+        "testcase": ["TestID", "Title", "Steps",
+                     "Expected", "Priority", "Tags", "Likelihood"],
+        "requirement": ["ID", "SourceFile", "Category",
+                        "Description", "Severity", "SuggestedRequirement"],
+    }
+
+    if mode not in headers:
+        raise ValueError(f"Unsupported mode: {mode}")
+
+    lines = [",".join(headers[mode])]
     for r in rows:
         escaped = [field.replace(",", ";") for field in r]
         lines.append(",".join(escaped))
+
     path.write_text("\n".join(lines), encoding="utf-8")
+
+# def to_rows(cases: List[Dict]) -> List[List[str]]:
+#     """Convert parsed case dictionaries into CSV-safe rows.
+
+#     Expected keys in each case dict (all optional):
+#       - id: unique identifier
+#       - title: short title for the test case
+#       - steps: list of step strings or a single string
+#       - expected: expected result text
+#       - priority: priority label (e.g., High/Medium/Low)
+
+#     The function normalizes missing values, flattens steps into a single
+#     string separated by " | ", and returns rows in the order:
+#     [TestID, Title, Steps, Expected, Priority].
+
+#     Args:
+#         cases: List of dictionaries representing test cases.
+
+#     Returns:
+#         List[List[str]]: Rows ready for CSV writing.
+#     """
+#     rows: List[List[str]] = []
+#     for i, c in enumerate(cases, start=1):
+#         tid = str(c.get("id") or f"TC-{i:03d}")
+#         title = str(c.get("title") or "").strip()
+#         steps_list = c.get("steps") or []
+#         if not isinstance(steps_list, list):
+#             steps_list = [str(steps_list)]
+#         steps = " | ".join(str(s).strip()
+#                            for s in steps_list if str(s).strip())
+#         expected = str(c.get("expected") or "").strip()
+#         priority = str(c.get("priority") or "Medium").strip()
+#         # Assignment: Day-1
+#         tags = str(c.get("tags") or "edge" or "negative" or "happy").strip()
+#         # Assignment: Day-1
+#         likelihood = str(c.get("likelihood")
+#                          or "High" or "Medium" or "Low").strip()
+#         rows.append([tid, title, steps, expected, priority,
+#                     tags, likelihood])  # Assignment: Day-1
+#     return rows
+
+
+# def write_csv(rows: List[List[str]], path: Path) -> None:
+#     """Write rows to a CSV file at `path`, creating parent directories.
+
+#     This simple writer:
+#     - Writes a header row `["TestID","Title","Steps","Expected","Priority"]`.
+#     - Escapes commas inside fields by replacing them with semicolons to avoid
+#       adding CSV quoting logic (keeps the helper dependency-free for teaching).
+
+#     Args:
+#         rows: List of rows (each row is list of strings).
+#         path: Destination file path for the CSV.
+
+#     Returns:
+#         None
+#     """
+#     path.parent.mkdir(parents=True, exist_ok=True)
+#     header = ["TestID", "Title", "Steps", "Expected",
+#               "Priority", "Tags", "Likelihood"]  # Assignment: Day-1
+#     lines = [",".join(header)]
+#     for r in rows:
+#         escaped = [field.replace(",", ";") for field in r]
+#         lines.append(",".join(escaped))
+#     path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def write_json(obj: object, path: Path) -> None:

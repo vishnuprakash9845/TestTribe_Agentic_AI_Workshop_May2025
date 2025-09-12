@@ -1,0 +1,42 @@
+ [
+  {
+    "id": "G-001",
+    "source_file": "cart.txt",
+    "category": "acceptance",
+    "description": "The system does not support logging out and logging back in while maintaining the cart state.",
+    "severity": "High",
+    "suggested_requirement": "The cart should persist if the user logs out and logs back in."
+  },
+  {
+    "id": "G-002",
+    "source_file": "cart.txt",
+    "category": "error-handling",
+    "description": "No error handling for cases when a user tries to add a product that is out of stock or remove an empty item from the cart.",
+    "severity": "Medium",
+    "suggested_requirement": "Implement error handling for cases when a user tries to add a product that is out of stock or remove an empty item from the cart."
+  },
+  {
+    "id": "G-003",
+    "source_file": "cart.txt",
+    "category": "performance",
+    "description": "The system may not handle a large number of items in the cart efficiently, causing performance issues.",
+    "severity": "Medium",
+    "suggested_requirement": "Optimize the cart functionality for efficient handling of a large number of items."
+  },
+  {
+    "id": "G-004",
+    "source_file": "cart.txt",
+    "category": "security",
+    "description": "No validation to ensure that only authorized users can modify the cart.",
+    "severity": "Low",
+    "suggested_requirement": "Implement user authorization checks when adding, updating, or removing items from the cart."
+  },
+  {
+    "id": "G-005",
+    "source_file": "cart.txt",
+    "category": "acceptance",
+    "description": "The system does not provide a “Proceed to Checkout” button when the cart is empty.",
+    "severity": "Low",
+    "suggested_requirement": "Display a “Proceed to Checkout” button only when the cart has at least one item."
+  }
+]

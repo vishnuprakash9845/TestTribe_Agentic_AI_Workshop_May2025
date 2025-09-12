@@ -3,7 +3,7 @@
 Agent entrypoint: edgecase_agent
 
 Run via module mode for reliable imports:
-  python -m src.agents.edgecase_agent --input data/requirements/login.txt
+  python -m src.agents.assignments.day1_edgecase_agent --input data/requirements/login.txt
 
 This file is intentionally small and imports core helpers from `src.core`.
 """
@@ -18,12 +18,12 @@ import time
 
 from src.core import chat, pick_requirement, parse_json_safely, to_rows, write_csv
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 REQ_DIR = ROOT / "data" / "requirements"
-OUT_DIR = ROOT / "outputs" / "edgecase_generated"  # where outputs are written
+OUT_DIR = ROOT / "outputs" / "assignments"  # where outputs are written
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-OUT_CSV = OUT_DIR / "test_cases.csv"  # CSV output path
-LAST_RAW_JSON = OUT_DIR / "last_raw.json"
+OUT_CSV = OUT_DIR / "edgecase_cases.csv"  # CSV output path
+LAST_RAW_JSON = OUT_DIR / "edgecase.json"
 
 SYSTEM_PROMPT = """You are a senior QA assistant.
 Think step-by-step about the requirement and produce ONLY a JSON array of

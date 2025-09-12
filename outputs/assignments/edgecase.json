@@ -1,0 +1,99 @@
+ [
+  {
+    "id": "TC-001",
+    "title": "Valid email sign up",
+    "steps": ["Enter valid email", "Enter password", "Enter mobile number", "Click sign up"],
+    "expected": "User is redirected to welcome page",
+    "priority": "High",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-002",
+    "title": "Invalid email sign up",
+    "steps": ["Enter invalid email format", "Enter password", "Enter mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "High",
+    "tags": ["edge"]
+  },
+  {
+    "id": "TC-003",
+    "title": "Password validation check",
+    "steps": ["Enter password (less than 8 chars)", "Enter mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "High",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-004",
+    "title": "Password validation with incorrect format",
+    "steps": ["Enter password (less than 8 chars, no uppercase letter)", "Enter mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "High",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-005",
+    "title": "OTP verification",
+    "steps": ["Enter correct OTP", "Click verify"],
+    "expected": "Account verified and redirected to welcome page",
+    "priority": "High",
+    "tags": ["happy"]
+  },
+  {
+    "id": "TC-006",
+    "title": "Incorrect OTP verification",
+    "steps": ["Enter incorrect OTP", "Click verify"],
+    "expected": "Error message displayed",
+    "priority": "High",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-007",
+    "title": "Email already in use",
+    "steps": ["Enter existing email", "Enter password", "Enter mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "High",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-008",
+    "title": "Mobile number already registered",
+    "steps": ["Enter valid email", "Enter password", "Enter existing mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "Medium",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-009",
+    "title": "Redirect to welcome page after successful signup",
+    "steps": ["Enter valid email", "Enter valid password", "Enter mobile number", "Click sign up"],
+    "expected": "User is redirected to welcome page",
+    "priority": "High",
+    "tags": ["happy"]
+  },
+  {
+    "id": "TC-010",
+    "title": "Sign up without mobile number",
+    "steps": ["Enter valid email", "Enter password", "Leave mobile number field empty", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "Medium",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-011",
+    "title": "Sign up without password",
+    "steps": ["Enter valid email", "Leave password field empty", "Enter mobile number", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "Medium",
+    "tags": ["negative"]
+  },
+  {
+    "id": "TC-012",
+    "title": "Sign up with empty fields",
+    "steps": ["Leave all fields empty", "Click sign up"],
+    "expected": "Error message displayed",
+    "priority": "Low",
+    "tags": ["negative"]
+  }
+]
