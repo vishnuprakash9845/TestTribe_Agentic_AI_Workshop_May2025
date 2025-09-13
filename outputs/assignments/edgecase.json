@@ -1,99 +1,110 @@
  [
   {
     "id": "TC-001",
-    "title": "Valid email sign up",
-    "steps": ["Enter valid email", "Enter password", "Enter mobile number", "Click sign up"],
-    "expected": "User is redirected to welcome page",
+    "title": "Valid email and correct password - Successful Login",
+    "steps": ["Enter valid email", "Enter correct password", "Click on Login"],
+    "expected": "User is redirected to the dashboard",
     "priority": "High",
     "tags": ["happy"],
     "likelihood": "High"
   },
   {
     "id": "TC-002",
-    "title": "Invalid email sign up",
-    "steps": ["Enter invalid email format", "Enter password", "Enter mobile number", "Click sign up"],
-    "expected": "Error message displayed",
+    "title": "Incorrect password - Account Lock (10 min)",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login", "Repeat 2 times"],
+    "expected": "Account is locked for 10 minutes",
     "priority": "High",
-    "tags": ["edge"]
+    "tags": ["edge"],
+    "likelihood": "Medium"
   },
   {
     "id": "TC-003",
-    "title": "Password validation check",
-    "steps": ["Enter password (less than 8 chars)", "Enter mobile number", "Click sign up"],
-    "expected": "Error message displayed",
+    "title": "Incorrect password - Error Message Displayed",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login"],
+    "expected": "An error message is displayed for invalid credentials",
     "priority": "High",
-    "tags": ["negative"]
+    "tags": ["negative"],
+    "likelihood": "High"
   },
   {
     "id": "TC-004",
-    "title": "Password validation with incorrect format",
-    "steps": ["Enter password (less than 8 chars, no uppercase letter)", "Enter mobile number", "Click sign up"],
-    "expected": "Error message displayed",
-    "priority": "High",
-    "tags": ["negative"]
+    "title": "Valid email and incorrect password - Error Message Displayed",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "Medium",
+    "tags": ["negative"],
+    "likelihood": "High"
   },
   {
     "id": "TC-005",
-    "title": "OTP verification",
-    "steps": ["Enter correct OTP", "Click verify"],
-    "expected": "Account verified and redirected to welcome page",
-    "priority": "High",
-    "tags": ["happy"]
+    "title": "Forgot Password - Password Reset Link Received",
+    "steps": ["Click on 'Forgot Password' link", "Enter valid email"],
+    "expected": "Password reset link is sent to the provided email",
+    "priority": "Medium",
+    "tags": ["happy"],
+    "likelihood": "High"
   },
   {
     "id": "TC-006",
-    "title": "Incorrect OTP verification",
-    "steps": ["Enter incorrect OTP", "Click verify"],
-    "expected": "Error message displayed",
-    "priority": "High",
-    "tags": ["negative"]
+    "title": "Invalid Email - Error Message Displayed",
+    "steps": ["Enter invalid email", "Click on Login"],
+    "expected": "An error message is displayed for invalid email",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "Medium"
   },
   {
     "id": "TC-007",
-    "title": "Email already in use",
-    "steps": ["Enter existing email", "Enter password", "Enter mobile number", "Click sign up"],
-    "expected": "Error message displayed",
-    "priority": "High",
-    "tags": ["negative"]
+    "title": "Locked Account - Cannot Login",
+    "steps": ["Enter valid email", "Enter correct password (after account lock)"],
+    "expected": "Cannot login as account is locked",
+    "priority": "Low",
+    "tags": ["edge"],
+    "likelihood": "Medium"
   },
   {
     "id": "TC-008",
-    "title": "Mobile number already registered",
-    "steps": ["Enter valid email", "Enter password", "Enter existing mobile number", "Click sign up"],
-    "expected": "Error message displayed",
-    "priority": "Medium",
-    "tags": ["negative"]
+    "title": "Locked Account - Login after 10 minutes",
+    "steps": ["Enter valid email", "Enter correct password (after account unlock)"],
+    "expected": "User is able to login",
+    "priority": "Low",
+    "tags": ["happy"],
+    "likelihood": "Medium"
   },
   {
     "id": "TC-009",
-    "title": "Redirect to welcome page after successful signup",
-    "steps": ["Enter valid email", "Enter valid password", "Enter mobile number", "Click sign up"],
-    "expected": "User is redirected to welcome page",
-    "priority": "High",
-    "tags": ["happy"]
+    "title": "Empty Email Field - Error Message Displayed",
+    "steps": ["Click on Login", "Leave email field empty"],
+    "expected": "An error message is displayed for empty email field",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "High"
   },
   {
     "id": "TC-010",
-    "title": "Sign up without mobile number",
-    "steps": ["Enter valid email", "Enter password", "Leave mobile number field empty", "Click sign up"],
-    "expected": "Error message displayed",
-    "priority": "Medium",
-    "tags": ["negative"]
+    "title": "Empty Password Field - Error Message Displayed",
+    "steps": ["Enter valid email", "Click on Login", "Leave password field empty"],
+    "expected": "An error message is displayed for empty password field",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "High"
   },
   {
     "id": "TC-011",
-    "title": "Sign up without password",
-    "steps": ["Enter valid email", "Leave password field empty", "Enter mobile number", "Click sign up"],
-    "expected": "Error message displayed",
-    "priority": "Medium",
-    "tags": ["negative"]
+    "title": "Password Reset - Successful Password Change",
+    "steps": ["Click on 'Forgot Password' link", "Enter valid email", "Follow password reset instructions"],
+    "expected": "The user's password is successfully changed",
+    "priority": "Low",
+    "tags": ["happy"],
+    "likelihood": "Medium"
   },
   {
     "id": "TC-012",
-    "title": "Sign up with empty fields",
-    "steps": ["Leave all fields empty", "Click sign up"],
-    "expected": "Error message displayed",
+    "title": "User already logged in - Cannot log in again",
+    "steps": ["Logged in user tries to login again"],
+    "expected": "Cannot login as the account is already logged in",
     "priority": "Low",
-    "tags": ["negative"]
+    "tags": ["edge"],
+    "likelihood": "Low"
   }
 ]

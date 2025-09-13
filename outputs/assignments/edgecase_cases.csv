@@ -1,13 +1,13 @@
 TestID,Title,Steps,Expected,Priority,Tags,Likelihood
-TC-001,Valid email sign up,Enter valid email | Enter password | Enter mobile number | Click sign up,User is redirected to welcome page,High,['happy'],High
-TC-002,Invalid email sign up,Enter invalid email format | Enter password | Enter mobile number | Click sign up,Error message displayed,High,['edge'],High
-TC-003,Password validation check,Enter password (less than 8 chars) | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
-TC-004,Password validation with incorrect format,Enter password (less than 8 chars; no uppercase letter) | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
-TC-005,OTP verification,Enter correct OTP | Click verify,Account verified and redirected to welcome page,High,['happy'],High
-TC-006,Incorrect OTP verification,Enter incorrect OTP | Click verify,Error message displayed,High,['negative'],High
-TC-007,Email already in use,Enter existing email | Enter password | Enter mobile number | Click sign up,Error message displayed,High,['negative'],High
-TC-008,Mobile number already registered,Enter valid email | Enter password | Enter existing mobile number | Click sign up,Error message displayed,Medium,['negative'],High
-TC-009,Redirect to welcome page after successful signup,Enter valid email | Enter valid password | Enter mobile number | Click sign up,User is redirected to welcome page,High,['happy'],High
-TC-010,Sign up without mobile number,Enter valid email | Enter password | Leave mobile number field empty | Click sign up,Error message displayed,Medium,['negative'],High
-TC-011,Sign up without password,Enter valid email | Leave password field empty | Enter mobile number | Click sign up,Error message displayed,Medium,['negative'],High
-TC-012,Sign up with empty fields,Leave all fields empty | Click sign up,Error message displayed,Low,['negative'],High
+TC-001,Valid email and correct password - Successful Login,Enter valid email | Enter correct password | Click on Login,User is redirected to the dashboard,High,['happy'],High
+TC-002,Incorrect password - Account Lock (10 min),Enter valid email | Enter incorrect password | Click on Login | Repeat 2 times,Account is locked for 10 minutes,High,['edge'],Medium
+TC-003,Incorrect password - Error Message Displayed,Enter valid email | Enter incorrect password | Click on Login,An error message is displayed for invalid credentials,High,['negative'],High
+TC-004,Valid email and incorrect password - Error Message Displayed,Enter valid email | Enter incorrect password | Click on Login,An error message is displayed for invalid credentials,Medium,['negative'],High
+TC-005,Forgot Password - Password Reset Link Received,Click on 'Forgot Password' link | Enter valid email,Password reset link is sent to the provided email,Medium,['happy'],High
+TC-006,Invalid Email - Error Message Displayed,Enter invalid email | Click on Login,An error message is displayed for invalid email,Low,['negative'],Medium
+TC-007,Locked Account - Cannot Login,Enter valid email | Enter correct password (after account lock),Cannot login as account is locked,Low,['edge'],Medium
+TC-008,Locked Account - Login after 10 minutes,Enter valid email | Enter correct password (after account unlock),User is able to login,Low,['happy'],Medium
+TC-009,Empty Email Field - Error Message Displayed,Click on Login | Leave email field empty,An error message is displayed for empty email field,Low,['negative'],High
+TC-010,Empty Password Field - Error Message Displayed,Enter valid email | Click on Login | Leave password field empty,An error message is displayed for empty password field,Low,['negative'],High
+TC-011,Password Reset - Successful Password Change,Click on 'Forgot Password' link | Enter valid email | Follow password reset instructions,The user's password is successfully changed,Low,['happy'],Medium
+TC-012,User already logged in - Cannot log in again,Logged in user tries to login again,Cannot login as the account is already logged in,Low,['edge'],Low
