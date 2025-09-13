@@ -1,0 +1,6 @@
+ID,SourceFile,Category,Description,Severity,SuggestedRequirement
+G-001,cart.txt,acceptance,The system does not support logging out and logging back in while maintaining the cart state.,High,The cart should persist if the user logs out and logs back in.
+G-002,cart.txt,error-handling,No error handling for cases when a user tries to add a product that is out of stock or remove an empty item from the cart.,Medium,Implement error handling for cases when a user tries to add a product that is out of stock or remove an empty item from the cart.
+G-003,cart.txt,performance,The system may not handle a large number of items in the cart efficiently; causing performance issues.,Medium,Optimize the cart functionality for efficient handling of a large number of items.
+G-004,cart.txt,security,No validation to ensure that only authorized users can modify the cart.,Low,Implement user authorization checks when adding; updating; or removing items from the cart.
+G-005,cart.txt,acceptance,The system does not provide a “Proceed to Checkout” button when the cart is empty.,Low,Display a “Proceed to Checkout” button only when the cart has at least one item.

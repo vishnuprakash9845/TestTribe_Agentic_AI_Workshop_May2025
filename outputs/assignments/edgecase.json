@@ -1,0 +1,110 @@
+ [
+  {
+    "id": "TC-001",
+    "title": "Valid email and correct password - Successful Login",
+    "steps": ["Enter valid email", "Enter correct password", "Click on Login"],
+    "expected": "User is redirected to the dashboard",
+    "priority": "High",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-002",
+    "title": "Incorrect password - Account Lock (10 min)",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login", "Repeat 2 times"],
+    "expected": "Account is locked for 10 minutes",
+    "priority": "High",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-003",
+    "title": "Incorrect password - Error Message Displayed",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "High",
+    "tags": ["negative"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-004",
+    "title": "Valid email and incorrect password - Error Message Displayed",
+    "steps": ["Enter valid email", "Enter incorrect password", "Click on Login"],
+    "expected": "An error message is displayed for invalid credentials",
+    "priority": "Medium",
+    "tags": ["negative"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-005",
+    "title": "Forgot Password - Password Reset Link Received",
+    "steps": ["Click on 'Forgot Password' link", "Enter valid email"],
+    "expected": "Password reset link is sent to the provided email",
+    "priority": "Medium",
+    "tags": ["happy"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-006",
+    "title": "Invalid Email - Error Message Displayed",
+    "steps": ["Enter invalid email", "Click on Login"],
+    "expected": "An error message is displayed for invalid email",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-007",
+    "title": "Locked Account - Cannot Login",
+    "steps": ["Enter valid email", "Enter correct password (after account lock)"],
+    "expected": "Cannot login as account is locked",
+    "priority": "Low",
+    "tags": ["edge"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-008",
+    "title": "Locked Account - Login after 10 minutes",
+    "steps": ["Enter valid email", "Enter correct password (after account unlock)"],
+    "expected": "User is able to login",
+    "priority": "Low",
+    "tags": ["happy"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-009",
+    "title": "Empty Email Field - Error Message Displayed",
+    "steps": ["Click on Login", "Leave email field empty"],
+    "expected": "An error message is displayed for empty email field",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-010",
+    "title": "Empty Password Field - Error Message Displayed",
+    "steps": ["Enter valid email", "Click on Login", "Leave password field empty"],
+    "expected": "An error message is displayed for empty password field",
+    "priority": "Low",
+    "tags": ["negative"],
+    "likelihood": "High"
+  },
+  {
+    "id": "TC-011",
+    "title": "Password Reset - Successful Password Change",
+    "steps": ["Click on 'Forgot Password' link", "Enter valid email", "Follow password reset instructions"],
+    "expected": "The user's password is successfully changed",
+    "priority": "Low",
+    "tags": ["happy"],
+    "likelihood": "Medium"
+  },
+  {
+    "id": "TC-012",
+    "title": "User already logged in - Cannot log in again",
+    "steps": ["Logged in user tries to login again"],
+    "expected": "Cannot login as the account is already logged in",
+    "priority": "Low",
+    "tags": ["edge"],
+    "likelihood": "Low"
+  }
+]

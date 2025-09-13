@@ -1,8 +1,9 @@
+# Assignment: Day-1
 """
-Agent entrypoint: testcase_agent
+Agent entrypoint: edgecase_agent
 
 Run via module mode for reliable imports:
-  python -m src.agents.testcase_agent --input data/requirements/login.txt
+  python -m src.agents.assignments.day4a_testtrail_edge --input data/requirements/login.txt
 
 This file is intentionally small and imports core helpers from `src.core`.
 """
@@ -11,40 +12,27 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
-from typing import List, Dict, Optional
+from typing import List, Dict
 import argparse
-
-from src.core import chat, pick_requirement, parse_json_safely, to_rows, write_csv
+import time
 from langchain.prompts import PromptTemplate
+from src.core import chat, pick_requirement, parse_json_safely, to_rows, write_csv
 from src.integrations.testrail import map_case_to_testrail_payload, create_case, list_cases, add_result, get_stats
 import re
 
-# The functions imported from `src.core` are small, dependency-free helpers
-# used to keep this agent focused on orchestration (easy for students to read
-# and extend): `chat` (LLM call), `pick_requirement` (choose input file),
-# `parse_json_safely` (robust JSON parsing), `to_rows` and `write_csv`.
-
-# Paths (easy-to-change constants for students)
-ROOT = Path(__file__).resolve().parents[2]
-# directory with .txt requirement files
+ROOT = Path(__file__).resolve().parents[3]
 REQ_DIR = ROOT / "data" / "requirements"
-OUT_DIR = ROOT / "outputs" / "testcase_generated"  # where outputs are written
+OUT_DIR = ROOT / "outputs" / "assignments"  # where outputs are written
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-OUT_CSV = OUT_DIR / "test_cases.csv"  # CSV output path
-LAST_RAW_JSON = OUT_DIR / "last_raw.json"  # file where raw LLM text is saved
-
-# Classroom note: these constants are intentionally simple and visible so
-# students can easily change input/output locations when experimenting.
+OUT_CSV = OUT_DIR / "edgecase_cases.csv"  # CSV output path
+LAST_RAW_JSON = OUT_DIR / "edgecase.json"
 
 PROMPTS_DIR = ROOT / "src" / "core" / "prompts"
 SYSTEM_PROMPT = (
-    PROMPTS_DIR / "testcase_system.txt").read_text(encoding="utf-8")
+    PROMPTS_DIR / "edge_testcase_system.txt").read_text(encoding="utf-8")
 USER_TEMPLATE_STR = (
-    PROMPTS_DIR / "testcase_user.txt").read_text(encoding="utf-8")
+    PROMPTS_DIR / "edge_testcase_user.txt").read_text(encoding="utf-8")
 USER_TEMPLATE = PromptTemplate.from_template(USER_TEMPLATE_STR)
-
-# `USER_TEMPLATE` wraps the requirement text so the model sees a clear input
-# block; we keep it simple for students to inspect and modify.
 
 Message = Dict[str, str]
 """Type alias for message dicts sent to the `chat` helper.
@@ -68,7 +56,7 @@ def _norm(title: str | None) -> str:
     return s
 
 
-def main(argv: Optional[list] = None) -> None:
+def main() -> None:
     """Run the testcase agent end-to-end.
 
     Flow:
@@ -89,20 +77,22 @@ def main(argv: Optional[list] = None) -> None:
       review pages, or direct integrations with Jira/TestRail.
     """
 
-    # Parse CLI: accept `--input PATH` for clarity in teaching demos
+    # Accept either a positional arg or --input / -i flag for the requirement path.
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", help="Path to a requirement .txt file")
-    args = parser.parse_args(argv)
+    parser.add_argument("input", nargs="?",
+                        help="path to requirement .txt file")
+    parser.add_argument("-i", "--input", dest="input_flag",
+                        help="path to requirement .txt file")
+    args = parser.parse_args()
 
-    # Configure logging for the process (simple default; agents may override)
     import logging
-
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
     )
     logger = logging.getLogger(__name__)
 
-    req_path = pick_requirement(args.input if args.input else None, REQ_DIR)
+    chosen = args.input_flag or args.input
+    req_path = pick_requirement(chosen, REQ_DIR)
     requirement_text = req_path.read_text(encoding="utf-8").strip()
 
     messages: List[Message] = [
@@ -118,11 +108,11 @@ def main(argv: Optional[list] = None) -> None:
     # a pure JSON array (see SYSTEM_PROMPT) so downstream parsing is simple.
     logger.debug(
         "Calling chat: provider payload msgs=%d (sys=1,user=1)", len(messages))
-    raw = chat(messages)
+    raw = chat(messages, timeout=300)
 
     try:
         cases = parse_json_safely(raw, LAST_RAW_JSON)
-    except Exception as e:
+    except (ValueError, json.JSONDecodeError) as exc:
         # gentle retry nudge — a pragmatic teaching technique: show how a
         # small reminder can correct common model format mistakes.
         logger.exception(
@@ -134,15 +124,15 @@ def main(argv: Optional[list] = None) -> None:
         )
         try:
             cases = parse_json_safely(nudge, LAST_RAW_JSON)
-        except Exception:
+        except (ValueError, json.JSONDecodeError) as exc2:
             # Surface a clear runtime error with a pointer to the saved raw
             # output so students can debug model responses during the session.
             logger.error(
                 "Could not parse model output after nudge; see %s", LAST_RAW_JSON
             )
             raise RuntimeError(
-                f"Could not parse model output as JSON. See {LAST_RAW_JSON}.\nError: {e}"
-            )
+                f"Could not parse model output as JSON. See {LAST_RAW_JSON}.\nError: {exc}"
+            ) from exc2
 
     rows = to_rows(cases)
     write_csv(rows, OUT_CSV)
@@ -152,7 +142,7 @@ def main(argv: Optional[list] = None) -> None:
     logger.info("ℹ️  Raw model output saved at: %s",
                 LAST_RAW_JSON.relative_to(ROOT))
 
-    # --- Day-4: Act step → push to TestRail mock ---
+ # --- Day-4: Act step → push to TestRail mock ---
     logger.info("ℹ️  Starting TestRail push step")
 
     # Map once → collect payloads (so we dedupe on the exact titles we will POST)
@@ -242,7 +232,10 @@ def main(argv: Optional[list] = None) -> None:
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     main()
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time:.4f} seconds")
 
 
 # To run the agent:
@@ -252,5 +245,6 @@ if __name__ == "__main__":
 #   ```
 # 2. Run the script:
 #  ```
-#   python -m src.agents.testcase_agent --input data/requirements/signup.txt
+#   python -m src.agents.assignments.day4a_testtrail_edge --input path/to/requirement.txt
 #   ```
+#   python -m src.agents.assignments.day4a_testtrail_edge --input data/requirements/signup.txt

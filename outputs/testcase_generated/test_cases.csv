@@ -1,9 +1,9 @@
-TestID,Title,Steps,Expected,Priority
-TC-001,Valid credentials - successful login,Enter valid email and password | Click on 'Login' button,User is redirected to their dashboard,High
-TC-002,Incorrect credentials - unsuccessful login,Enter invalid email and password | Click on 'Login' button,Error message displayed for invalid credentials,High
-TC-003,Three incorrect login attempts - account locking,Enter incorrect password thrice | Click on 'Login' button,Account is locked for 10 minutes,High
-TC-004,Forgot Password link functionality,Click on 'Forgot Password' link | Follow password reset instructions,User can successfully reset their password,High
-TC-005,Redirect to login page after password reset,Reset password | Click on 'Login' button,User is redirected to the login page,Medium
-TC-006,Incorrect email format validation,Enter an invalid email format | Click on 'Login' button,Error message displayed for incorrect email format,Medium
-TC-007,Empty email or password validation,Leave the email field empty | Click on 'Login' button,Error message displayed for empty fields,Low
-TC-008,Password length validation,Enter a password with less than 6 characters | Click on 'Login' button,Error message displayed for password length,Low
+TestID,Title,Steps,Expected,Priority,Tags,Likelihood
+TC-001,Valid Email Sign Up,Enter valid email address | Enter password meeting criteria | Enter mobile number | Request OTP | Enter OTP for verification | Submit sign up form,User should be successfully registered and redirected to the welcome page,High,edge,High
+TC-002,Invalid Email Sign Up,Enter an invalid email address | Enter password meeting criteria | Enter mobile number | Request OTP | Submit sign up form,An error message should be displayed and the user should not be registered,High,edge,High
+TC-003,Existing Email Sign Up,Enter an email address already in use | Enter password meeting criteria | Enter mobile number | Request OTP | Submit sign up form,An error message should be displayed and the user should not be registered,High,edge,High
+TC-004,Password Criteria Violation,Enter a password with less than 8 characters | Enter a password without an uppercase letter | Enter a password without a number | Enter a password without a special character,An error message should be displayed and the user should not be able to proceed,High,edge,High
+TC-005,OTP Verification Failure,Enter incorrect OTP | Submit OTP for verification,An error message should be displayed and the user should not be registered,Medium,edge,High
+TC-006,Successful Redirection After Sign Up,Sign up successfully,User should be redirected to the welcome page,Medium,edge,High
+TC-007,Mobile Number Validation,Enter an invalid mobile number | Request OTP,An error message should be displayed and the user should not receive the OTP,Low,edge,High
+TC-008,Sign Up with Only Email,Enter email address | Submit sign up form without entering mobile number or password,An error message should be displayed and the user should not be able to proceed,Low,edge,High
