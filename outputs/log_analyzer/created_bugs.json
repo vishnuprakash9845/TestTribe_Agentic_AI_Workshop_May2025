@@ -1,4 +1,6 @@
 {
   "2025-09-12|failed_to_warm_cache": "QA-3",
-  "2025-09-12|failed to warm cache": "QA-4"
+  "2025-09-12|failed to warm cache": "QA-4",
+  "2025-09-14|payment processing failed": "QA-1",
+  "2025-09-14|timeout while calling /api/external/notify": "QA-2"
 }

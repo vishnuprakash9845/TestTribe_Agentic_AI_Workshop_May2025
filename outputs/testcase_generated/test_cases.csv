@@ -1,9 +1,9 @@
 TestID,Title,Steps,Expected,Priority,Tags,Likelihood
-TC-001,Valid Email Sign Up,Enter valid email address | Enter password meeting criteria | Enter mobile number | Request OTP | Enter OTP for verification | Submit sign up form,User should be successfully registered and redirected to the welcome page,High,edge,High
-TC-002,Invalid Email Sign Up,Enter an invalid email address | Enter password meeting criteria | Enter mobile number | Request OTP | Submit sign up form,An error message should be displayed and the user should not be registered,High,edge,High
-TC-003,Existing Email Sign Up,Enter an email address already in use | Enter password meeting criteria | Enter mobile number | Request OTP | Submit sign up form,An error message should be displayed and the user should not be registered,High,edge,High
-TC-004,Password Criteria Violation,Enter a password with less than 8 characters | Enter a password without an uppercase letter | Enter a password without a number | Enter a password without a special character,An error message should be displayed and the user should not be able to proceed,High,edge,High
-TC-005,OTP Verification Failure,Enter incorrect OTP | Submit OTP for verification,An error message should be displayed and the user should not be registered,Medium,edge,High
-TC-006,Successful Redirection After Sign Up,Sign up successfully,User should be redirected to the welcome page,Medium,edge,High
-TC-007,Mobile Number Validation,Enter an invalid mobile number | Request OTP,An error message should be displayed and the user should not receive the OTP,Low,edge,High
-TC-008,Sign Up with Only Email,Enter email address | Submit sign up form without entering mobile number or password,An error message should be displayed and the user should not be able to proceed,Low,edge,High
+TC-001,Valid email format registration,Enter a valid email address | Click 'Sign Up' button,User is successfully registered,High,edge,High
+TC-002,Invalid email format registration,Enter an invalid email address | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-003,Short password registration,Enter a password less than 8 characters | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-004,Password without uppercase letter,Enter a password without an uppercase letter | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-005,Password without number,Enter a password without a number | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-006,Password without special character,Enter a password without a special character | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-007,Existing email registration,Enter an email address already in use | Click 'Sign Up' button,Error message displayed and user not registered,High,edge,High
+TC-008,OTP verification after signup,Register using a new email; mobile number; and password | Receive OTP on the provided mobile number | Enter the OTP and click 'Verify' button,User is successfully verified and redirected to welcome page,High,edge,High

@@ -155,6 +155,47 @@ python -m src.agents.log_analyzer --inputs data\log\app_startup_short.log
 <summary>📅 Day 5</summary>
 
 ### ✅ Key Learnings
+- Understood the basics of **LangGraph**:
+  - Nodes
+  - Edges
+  - State
+  - Interrupts
+- Learned how to design a QA pipeline graph.
+
+### 🚀 Hands-on
+- Designed a pipeline for **Test Case Generator**.
+- Designed a pipeline for **Log Analyzer** (homework task).
+
+### 💡 Notes
+- Breaking workflows into graph-based pipelines helps in modularizing QA processes.
+- Nodes and edges clearly define flow, making debugging and scaling easier.
+- Homework reinforces applying the same concept to log analysis.
+
+### 🚀 Command & Screenshot
+- LangGraph Test Case Generator:
+
+```
+python -m src.graph.drivers.run_test_case_pipeline --input data/requirements/signup.txt
+```
+![Command To Run](./images/day5.1.png)
+![TestTrail Screenshot](./images/day5.2.png)
+
+- LangGraph Log Analyzer pipeline
+
+```
+python -m src.graph.drivers.run_log_analyzer_pipeline --input data/log/runtime_errors_short.log
+```
+![Command To Run](./images/day5.3.png)
+![Jira Screenshot](./images/day5.4.png)
+
+</details>
+
+---
+
+<details>
+<summary>📅 Day 6</summary>
+
+### ✅ Key Learnings
 - 
 
 ### 🚀 Hands-on
