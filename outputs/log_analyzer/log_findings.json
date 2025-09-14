@@ -1,7 +1,7 @@
 {
   "groups": [
     {
-      "signature": "starting application qa agent",
+      "signature": "worker-7 processing job",
       "count": 1,
       "levels": {
         "INFO": 1,
@@ -9,27 +9,13 @@
         "ERROR": 0
       },
       "examples": [
-        "2025-08-20 08:00:01 [INFO] Starting application: qa-agent-service v1.2.0"
+        "2025-08-20 09:12:11 [INFO] Worker-7 processing job job_id=8a3f2b"
       ],
       "probable_root_cause": "",
       "recommendation": ""
     },
     {
-      "signature": "database connection pool initialized",
-      "count": 1,
-      "levels": {
-        "INFO": 1,
-        "WARN": 0,
-        "ERROR": 0
-      },
-      "examples": [
-        "2025-08-20 08:00:03 [INFO] Database connection pool initialized (size=10)"
-      ],
-      "probable_root_cause": "",
-      "recommendation": ""
-    },
-    {
-      "signature": "failed to warm cache",
+      "signature": "payment processing failed",
       "count": 1,
       "levels": {
         "INFO": 0,
@@ -37,18 +23,33 @@
         "ERROR": 1
       },
       "examples": [
-        "2025-08-20 08:00:05 [ERROR] Failed to warm cache: redis://localhost:6379 - ConnectionRefusedError"
+        "2025-08-20 09:12:13 [ERROR] Payment processing failed: PaymentGatewayError: Declined card - code 402"
       ],
-      "probable_root_cause": "Connection issue with Redis server",
-      "recommendation": "Check the status of your Redis server and ensure it's running properly."
+      "probable_root_cause": "Payment issue (Declined card)",
+      "recommendation": "Check the payment details and update if necessary."
+    },
+    {
+      "signature": "timeout while calling /api/external/notify",
+      "count": 1,
+      "levels": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 1
+      },
+      "examples": [
+        "2025-08-20 09:14:03 [ERROR] Timeout while calling /api/external/notify (30000ms)"
+      ],
+      "probable_root_cause": "API call timeout",
+      "recommendation": "Investigate the API issue and increase the timeout if necessary."
     }
   ],
   "summary": {
     "total_events": 10,
-    "error_rate": 0.1,
+    "error_rate": 0.3,
     "top_signatures": [
-      "failed to warm cache"
+      "payment processing failed",
+      "timeout while calling /api/external/notify"
     ],
-    "short_summary": "The log contains 10 events with a 10% error rate. The primary issue appears to be a connection problem with the Redis server."
+    "short_summary": "30% of events were errors. Major issues include payment failures and API timeouts."
   }
 }

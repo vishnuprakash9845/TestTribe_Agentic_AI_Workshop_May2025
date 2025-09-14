@@ -1,58 +1,58 @@
  [
   {
     "id": "TC-001",
-    "title": "Valid Email Sign Up",
-    "steps": ["Enter valid email address", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Enter OTP for verification", "Submit sign up form"],
-    "expected": "User should be successfully registered and redirected to the welcome page",
+    "title": "Valid email format registration",
+    "steps": ["Enter a valid email address", "Click 'Sign Up' button"],
+    "expected": "User is successfully registered",
     "priority": "High"
   },
   {
     "id": "TC-002",
-    "title": "Invalid Email Sign Up",
-    "steps": ["Enter an invalid email address", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Submit sign up form"],
-    "expected": "An error message should be displayed and the user should not be registered",
+    "title": "Invalid email format registration",
+    "steps": ["Enter an invalid email address", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
     "priority": "High"
   },
   {
     "id": "TC-003",
-    "title": "Existing Email Sign Up",
-    "steps": ["Enter an email address already in use", "Enter password meeting criteria", "Enter mobile number", "Request OTP", "Submit sign up form"],
-    "expected": "An error message should be displayed and the user should not be registered",
+    "title": "Short password registration",
+    "steps": ["Enter a password less than 8 characters", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
     "priority": "High"
   },
   {
     "id": "TC-004",
-    "title": "Password Criteria Violation",
-    "steps": ["Enter a password with less than 8 characters", "Enter a password without an uppercase letter", "Enter a password without a number", "Enter a password without a special character"],
-    "expected": "An error message should be displayed and the user should not be able to proceed",
+    "title": "Password without uppercase letter",
+    "steps": ["Enter a password without an uppercase letter", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
     "priority": "High"
   },
   {
     "id": "TC-005",
-    "title": "OTP Verification Failure",
-    "steps": ["Enter incorrect OTP", "Submit OTP for verification"],
-    "expected": "An error message should be displayed and the user should not be registered",
-    "priority": "Medium"
+    "title": "Password without number",
+    "steps": ["Enter a password without a number", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
+    "priority": "High"
   },
   {
     "id": "TC-006",
-    "title": "Successful Redirection After Sign Up",
-    "steps": ["Sign up successfully", ""],
-    "expected": "User should be redirected to the welcome page",
-    "priority": "Medium"
+    "title": "Password without special character",
+    "steps": ["Enter a password without a special character", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
+    "priority": "High"
   },
   {
     "id": "TC-007",
-    "title": "Mobile Number Validation",
-    "steps": ["Enter an invalid mobile number", "Request OTP"],
-    "expected": "An error message should be displayed and the user should not receive the OTP",
-    "priority": "Low"
+    "title": "Existing email registration",
+    "steps": ["Enter an email address already in use", "Click 'Sign Up' button"],
+    "expected": "Error message displayed and user not registered",
+    "priority": "High"
   },
   {
     "id": "TC-008",
-    "title": "Sign Up with Only Email",
-    "steps": ["Enter email address", "Submit sign up form without entering mobile number or password"],
-    "expected": "An error message should be displayed and the user should not be able to proceed",
-    "priority": "Low"
+    "title": "OTP verification after signup",
+    "steps": ["Register using a new email, mobile number, and password", "Receive OTP on the provided mobile number", "Enter the OTP and click 'Verify' button"],
+    "expected": "User is successfully verified and redirected to welcome page",
+    "priority": "High"
   }
 ]

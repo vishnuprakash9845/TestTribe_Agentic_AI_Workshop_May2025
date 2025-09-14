@@ -4,3 +4,6 @@ langchain
 langchain-openai
 langchain-ollama
 python-dotenv
+langgraph
+rich
+loguru

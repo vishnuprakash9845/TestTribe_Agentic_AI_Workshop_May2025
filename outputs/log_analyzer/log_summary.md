@@ -1,9 +1,10 @@
 # Summary
 {
   "total_events": 10,
-  "error_rate": 0.1,
+  "error_rate": 0.3,
   "top_signatures": [
-    "failed to warm cache"
+    "payment processing failed",
+    "timeout while calling /api/external/notify"
   ],
-  "short_summary": "The log contains 10 events with a 10% error rate. The primary issue appears to be a connection problem with the Redis server."
+  "short_summary": "30% of events were errors. Major issues include payment failures and API timeouts."
 }
